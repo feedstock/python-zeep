@@ -362,7 +362,10 @@ class SoapMessage(ConcreteMessage):
 
             message = definitions.get('messages', message_name)
             if message == self.abstract:
-                del parts[part_name]
+                try:
+                    del parts[part_name]
+                except KeyError:
+                    pass
 
             part = message.parts[part_name]
             if part.element:
